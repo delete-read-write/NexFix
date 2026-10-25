@@ -1,6 +1,6 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from nexfix.bootstrap.config.settings import AppSettings
+from nexfix.bootstrap.config.settings import AppSettings, LoggingSettings
 
 
 class BaseEnvSettings(BaseSettings):
@@ -13,3 +13,7 @@ class BaseEnvSettings(BaseSettings):
 
 class AppEnvConfig(BaseEnvSettings, AppSettings):
     model_config = SettingsConfigDict(env_prefix="APP_")
+
+
+class LoggingEnvConfig(BaseEnvSettings, LoggingSettings):
+    model_config = SettingsConfigDict(env_prefix="LOGGING_")
