@@ -36,3 +36,4 @@ fix: lint-fix format
 # Run static check
 [group("Quality")]
 check: lint format-check typecheck
+check-ci: check
