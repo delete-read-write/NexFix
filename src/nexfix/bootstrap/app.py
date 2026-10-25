@@ -21,7 +21,6 @@ def create_app(
         debug=app_settings.debug_mode,
         title=app_settings.service_name,
         version=app_settings.service_version,
-        root_path=app_settings.root_path,
     )
 
     return app
