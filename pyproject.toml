@@ -21,8 +21,48 @@ build-backend = "uv_build"
 dev = [
     "mypy>=2.4.0",
     "pre-commit>=4.7.0",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "pytest-cov>=7.1.0",
     "ruff>=0.17.1",
 ]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+exclude_also = [
+  ".* = Literal\\[.*\\]",
+  ".* = NewType\\(.*\\)",
+  "^\\s*pass\\s*$",
+  "^\\s*raise\\s*$",
+  "from .* import .*",
+  "if __name__ == .__main__.:",
+  "import .*",
+  "logger\\..*",
+  "logging\\..*",
+]
+
+[tool.coverage.run]
+concurrency = ["thread"]
+core = "sysmon"
+relative_files = true
+source = ["src"]
+omit = [
+  "src/nexfix/bootstrap/**",
+]
+
+[tool.pytest]
+addopts = [
+    "--color=yes",
+    "-m", "not slow",
+    "--strict-config",
+    "--strict-markers"
+]
+filterwarnings = []
+markers = ["slow"]
+testpaths = ["tests"]
+asyncio_default_fixture_loop_scope = "function"
+asyncio_mode = "auto"
 
 [tool.ruff]
 target-version = "py313"

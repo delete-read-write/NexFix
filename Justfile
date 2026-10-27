@@ -1,5 +1,6 @@
 ruff := "uv run ruff"
 mypy := "uv run mypy"
+pytest := "uv run pytest"
 
 default:
     @just --list
@@ -29,6 +30,16 @@ format-check:
 typecheck:
     {{mypy}} src
 
+# Run tests
+[group("Pytest")]
+test:
+    {{pytest}}
+
+# Run tests with coverage
+[group("Pytest")]
+test-cov:
+    {{pytest}} --cov
+
 # Fix code style
 [group("Quality")]
 fix: lint-fix format
@@ -36,4 +47,4 @@ fix: lint-fix format
 # Run static check
 [group("Quality")]
 check: lint format-check typecheck
-check-ci: check
+check-ci: check test
