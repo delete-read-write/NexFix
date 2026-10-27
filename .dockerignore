@@ -30,6 +30,7 @@ htmlcov
 tests
 Dockerfile
 docker-compose.yaml
+docker-compose.override.yaml
 .dockerignore
 .pre-commit-config.yaml
 Justfile
