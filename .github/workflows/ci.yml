@@ -27,3 +27,16 @@ jobs:
 
       - name: Check code
         run: just check-ci
+
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Just
+        uses: extractions/setup-just@v3
+
+      - name: Build image and run smoke test
+        run: just docker-smoke

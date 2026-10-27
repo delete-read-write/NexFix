@@ -9,8 +9,10 @@ authors = [
 requires-python = ">=3.13"
 dependencies = [
     "fastapi>=0.162.0",
+    "granian[reload,uvloop]>=2.8.5",
     "pydantic>=2.14.1",
     "pydantic-settings>=2.16.1",
+    "uvloop>=0.23.0",
 ]
 
 [build-system]
@@ -49,6 +51,7 @@ relative_files = true
 source = ["src"]
 omit = [
   "src/nexfix/bootstrap/**",
+  "docker-entrypoint.py",
 ]
 
 [tool.pytest]
@@ -67,6 +70,7 @@ asyncio_mode = "auto"
 [tool.ruff]
 target-version = "py313"
 line-length = 120
+extend-exclude = ["docker-entrypoint.py"]
 
 [tool.ruff.lint]
 select = [
@@ -89,6 +93,7 @@ skip-magic-trailing-comma = false
 python_version = "3.13"
 mypy_path = ["src"]
 files = ["src"]
+exclude = ["^docker-entrypoint\\.py$"]
 
 strict = true
 pretty = true
